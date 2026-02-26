@@ -3,6 +3,9 @@ package com.axelpalacios.todoapp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class Controller {
     @FXML
@@ -13,9 +16,6 @@ public class Controller {
     private Label descriptionLabel;
     @FXML
     public void initialize(){
-        toDoList.getItems().addAll(
-                new ToDo("Homework", "Module 4 Lab CSC311")
-        );
 
         toDoList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null){
@@ -25,5 +25,28 @@ public class Controller {
                 descriptionLabel.setText(newSelection.getDescription());
             }
         });
+    }
+    @FXML
+    private void openNewWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("addItem.fxml")
+            );
+
+            Scene scene = new Scene(loader.load());
+
+            AddController controller = loader.getController();
+            controller.setMainController(this);
+
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void addToDo(ToDo todo) {
+        toDoList.getItems().add(todo);
     }
 }

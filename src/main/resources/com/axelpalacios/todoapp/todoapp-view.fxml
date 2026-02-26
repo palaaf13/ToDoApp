@@ -15,4 +15,11 @@
          </children>
       </VBox>
    </center>
+   <top>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+          <Button fx:id="addButton" mnemonicParsing="false" text="Add" onAction="#openNewWindow" />
+        </buttons>
+      </ButtonBar>
+   </top>
 </BorderPane>

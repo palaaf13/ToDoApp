@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.axelpalacios.todoapp.AddController">
+   <children>
+      <Label text="Add ToDo">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="titleTextField" prefHeight="26.0" prefWidth="329.0" promptText="Reminder Title" />
+      <TextField fx:id="descriptionTextField" prefHeight="26.0" prefWidth="328.0" promptText="Description" />
+      <Button onAction="#handleClose" text="Save and Close" />
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</VBox>
