@@ -1,6 +1,7 @@
 module com.axelpalacios.todoapp {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     opens com.axelpalacios.todoapp to javafx.fxml;

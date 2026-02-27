@@ -5,9 +5,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.stage.Stage;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.DragEvent;
+
 
 public class Controller {
+    //Attribute declarations
     @FXML
     private ListView<ToDo> toDoList;
     @FXML
@@ -15,19 +24,69 @@ public class Controller {
     @FXML
     private Label descriptionLabel;
     @FXML
+    private Label titleTitleLabel;
+    @FXML
+    private Label descriptionDescriptionLabel;
+    @FXML
+    private ImageView trashBin;
+    @FXML
     public void initialize(){
-
+        //List item selection to show title and description
         toDoList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null){
+                titleTitleLabel.setVisible(true);
+                descriptionDescriptionLabel.setVisible(true);
                 titleLabel.setVisible(true);
                 descriptionLabel.setVisible(true);
                 titleLabel.setText(newSelection.getTitle());
                 descriptionLabel.setText(newSelection.getDescription());
             }
         });
+
+        toDoList.setOnDragDetected(event -> {
+            ToDo selectedItem = toDoList.getSelectionModel().getSelectedItem();
+
+            if (selectedItem == null) return;
+
+            Dragboard db = toDoList.startDragAndDrop(javafx.scene.input.TransferMode.MOVE);
+
+            javafx.scene.input.ClipboardContent content = new javafx.scene.input.ClipboardContent();
+            content.putString(selectedItem.getTitle()); // you can store ID instead
+            db.setContent(content);
+
+            event.consume();
+        });
+
+
+        trashBin.setOnDragOver(event -> {
+            if (event.getGestureSource() != trashBin &&
+                    event.getDragboard().hasString()) {
+                event.acceptTransferModes(javafx.scene.input.TransferMode.MOVE);
+            }
+            event.consume();
+        });
+
+
+        trashBin.setOnDragDropped(event -> {
+
+            ToDo selectedItem = toDoList.getSelectionModel().getSelectedItem();
+
+            if (selectedItem != null) {
+                toDoList.getItems().remove(selectedItem);
+            }
+
+            titleTitleLabel.setVisible(false);
+            titleLabel.setVisible(false);
+            descriptionDescriptionLabel.setVisible(false);
+            descriptionLabel.setVisible(false);
+
+            event.setDropCompleted(true);
+            event.consume();
+        });
     }
     @FXML
     private void openNewWindow() {
+        //for when "Add" button is clicked aka opening a new window (addItem.fxml)
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("addItem.fxml")

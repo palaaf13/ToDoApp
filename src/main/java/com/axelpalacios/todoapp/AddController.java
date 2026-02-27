@@ -6,10 +6,12 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 public class AddController {
+    //Attributes
     @FXML
     private TextField titleTextField;
     @FXML
     private TextField descriptionTextField;
+
 
     private Controller mainController;
 
@@ -17,6 +19,7 @@ public class AddController {
         this.mainController = controller;
     }
 
+    //Handling "Save and Close" button so that text field inputs are actually saved/displayed
     public void handleClose(javafx.event.ActionEvent event) {
         String title = titleTextField.getText();
         String description = descriptionTextField.getText();
@@ -24,7 +27,7 @@ public class AddController {
         if (mainController != null) {
             mainController.addToDo(new ToDo(title, description));
         }
-
+        //after button is clicked, close window and go back to ToDo List
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
