@@ -8,10 +8,10 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.axelpalacios.todoapp.Controller">
    <left>
-      <ListView id="reminderList" fx:id="toDoList" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: grey; -fx-border-width: 2;" BorderPane.alignment="CENTER" />
+      <ListView id="reminderList" fx:id="toDoList" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: grey; -fx-background-color: #F5FFFA; -fx-border-width: 2;" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="339.0" prefWidth="389.0" spacing="10.0" style="-fx-background-color: #F5FFFA;" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="titleTitleLabel" text="Title:" visible="false">
                <font>
@@ -35,18 +35,45 @@
       </VBox>
    </center>
    <top>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-width: 3;">
+      <ButtonBar maxWidth="-Infinity" prefHeight="56.0" prefWidth="201.0" style="-fx-background-color: #F5FFFA; -fx-border-color: grey; -fx-border-width: 3;" BorderPane.alignment="TOP_LEFT">
         <buttons>
-            <ImageView fx:id="trashBin" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@recycle-bin.jpg" />
-               </image>
-            </ImageView>
-          <Button fx:id="addButton" mnemonicParsing="false" onAction="#openNewWindow" text="Add" />
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="trashBin" fitHeight="42.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@trashBinEmpty.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="trashBinFull" fitHeight="49.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@trashBinFull.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="17.0" prefWidth="47.0" text="    ">
+                      <tooltip>
+                          <Tooltip text="Drag items here to delete." ><font><Font size="13"/></font></Tooltip>
+                      </tooltip>
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+          <Button fx:id="addButton" mnemonicParsing="false" onAction="#openNewWindow" prefHeight="26.0" text="Add">
+            <tooltip>
+            <Tooltip text="Click to add a To Do." />
+            </tooltip>
+          </Button>
         </buttons>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="-30.0" right="15.0" />
+         </padding>
       </ButtonBar>
    </top>
 </BorderPane>

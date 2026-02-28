@@ -11,7 +11,7 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <TextField fx:id="titleTextField" prefHeight="26.0" prefWidth="329.0" promptText="Reminder Title" />
+      <TextField fx:id="titleTextField" prefHeight="26.0" prefWidth="329.0" promptText="ToDo Title" />
       <TextField fx:id="descriptionTextField" prefHeight="26.0" prefWidth="328.0" promptText="Description" />
       <Button onAction="#handleClose" text="Save and Close" />
    </children>

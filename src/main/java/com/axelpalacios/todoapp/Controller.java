@@ -30,10 +30,14 @@ public class Controller {
     @FXML
     private ImageView trashBin;
     @FXML
+    private ImageView trashBinFull;
+
+
+    @FXML
     public void initialize(){
         //List item selection to show title and description
         toDoList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null){
+            if (newSelection != null) {
                 titleTitleLabel.setVisible(true);
                 descriptionDescriptionLabel.setVisible(true);
                 titleLabel.setVisible(true);
@@ -43,6 +47,8 @@ public class Controller {
             }
         });
 
+
+        //trash bin function code (deleting reminders)
         toDoList.setOnDragDetected(event -> {
             ToDo selectedItem = toDoList.getSelectionModel().getSelectedItem();
 
@@ -75,6 +81,38 @@ public class Controller {
                 toDoList.getItems().remove(selectedItem);
             }
 
+            //Changes trash bin visualization from empty to full (two different sprites stacked)
+            trashBin.setVisible(false);
+            trashBinFull.setVisible(true);
+
+            //Disable visibily on title and description attributes after deleting item from list
+            titleTitleLabel.setVisible(false);
+            titleLabel.setVisible(false);
+            descriptionDescriptionLabel.setVisible(false);
+            descriptionLabel.setVisible(false);
+
+            event.setDropCompleted(true);
+            event.consume();
+        });
+
+        //Passing over functionality of trash bin to full trash bin sprite
+        trashBinFull.setOnDragOver(event -> {
+            if (event.getGestureSource() != trashBinFull &&
+                    event.getDragboard().hasString()) {
+                event.acceptTransferModes(javafx.scene.input.TransferMode.MOVE);
+            }
+            event.consume();
+        });
+
+
+        trashBinFull.setOnDragDropped(event -> {
+
+            ToDo selectedItem = toDoList.getSelectionModel().getSelectedItem();
+
+            if (selectedItem != null) {
+                toDoList.getItems().remove(selectedItem);
+            }
+
             titleTitleLabel.setVisible(false);
             titleLabel.setVisible(false);
             descriptionDescriptionLabel.setVisible(false);
@@ -84,6 +122,8 @@ public class Controller {
             event.consume();
         });
     }
+
+    //Add window
     @FXML
     private void openNewWindow() {
         //for when "Add" button is clicked aka opening a new window (addItem.fxml)
