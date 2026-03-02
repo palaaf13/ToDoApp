@@ -8,10 +8,10 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.axelpalacios.todoapp.Controller">
    <left>
-      <ListView id="reminderList" fx:id="toDoList" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: grey; -fx-background-color: #F5FFFA; -fx-border-width: 2;" BorderPane.alignment="CENTER" />
+      <ListView id="reminderList" fx:id="toDoList" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: grey; -fx-border-width: 2;" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <VBox prefHeight="339.0" prefWidth="389.0" spacing="10.0" style="-fx-background-color: #F5FFFA;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="339.0" prefWidth="389.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="titleTitleLabel" text="Title:" visible="false">
                <font>
@@ -35,7 +35,7 @@
       </VBox>
    </center>
    <top>
-      <ButtonBar maxWidth="-Infinity" prefHeight="56.0" prefWidth="201.0" style="-fx-background-color: #F5FFFA; -fx-border-color: grey; -fx-border-width: 3;" BorderPane.alignment="TOP_LEFT">
+      <ButtonBar maxWidth="-Infinity" prefHeight="56.0" prefWidth="201.0" style="-fx-border-color: grey; -fx-border-width: 3;" BorderPane.alignment="TOP_LEFT">
         <buttons>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
@@ -49,9 +49,9 @@
                         <Image url="@trashBinFull.jpg" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="17.0" prefWidth="47.0" text="    ">
+                  <Label fx:id="trashBinBlankLabel" prefHeight="17.0" prefWidth="47.0" text="    ">
                       <tooltip>
-                          <Tooltip text="Drag items here to delete." ><font><Font size="13"/></font></Tooltip>
+                          <Tooltip text="Drag items here to delete."><font><Font size="13" /></font></Tooltip>
                       </tooltip>
                      <font>
                         <Font size="39.0" />
