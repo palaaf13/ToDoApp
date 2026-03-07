@@ -1,22 +1,22 @@
 package com.axelpalacios.todoapp;
-//Creating items for the list
+
 public class ToDo {
     private String title;
     private String description;
+    private int priority;
 
-    //Constructor
-    public ToDo(String title, String description){
+    public ToDo(String title, String description, int priority){
         this.title = title;
         this.description = description;
+        this.priority = priority;
     }
 
-    //get statements for title and description
     public String getTitle(){ return title; }
     public String getDescription(){ return description; }
+    public int getPriority(){ return priority; }
 
-    //What shows in the actual list
     @Override
     public String toString(){
-        return title;
+        return title + " (Priority: " + priority + ")";
     }
 }

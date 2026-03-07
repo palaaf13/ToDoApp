@@ -80,8 +80,10 @@ public class Controller {
             ToDo selectedItem = toDoList.getSelectionModel().getSelectedItem();
 
             if (selectedItem != null) {
-                toDoList.getItems().remove(selectedItem);
+                queue.getAll().remove(selectedItem); //Removes item from queue as well
             }
+            toDoList.getItems().clear();
+            toDoList.getItems().addAll(queue.getAll());
 
             //Changes trash bin visualization from empty to full (two different sprites stacked)
             trashBin.setVisible(false);
@@ -120,7 +122,24 @@ public class Controller {
             e.printStackTrace();
         }
     }
+
+    private MyPriorityQueue queue = new MyPriorityQueue();
+
     public void addToDo(ToDo todo) {
-        toDoList.getItems().add(todo);
+        queue.insert(todo);
+
+        toDoList.getItems().clear();
+        toDoList.getItems().addAll(queue.getAll());
+    }
+    @FXML
+    public void completeTask(){
+        ToDo done = queue.remove();
+
+        toDoList.getItems().clear();
+        toDoList.getItems().addAll(queue.getAll());
+        titleTitleLabel.setVisible(false);
+        titleLabel.setVisible(false);
+        descriptionDescriptionLabel.setVisible(false);
+        descriptionLabel.setVisible(false);
     }
 }
